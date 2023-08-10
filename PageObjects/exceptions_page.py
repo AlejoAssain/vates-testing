@@ -21,3 +21,8 @@ class ExceptionsPage(BasePage):
 
     def is_row2_displayed(self) -> bool:
         return super()._is_displayed(self.__row_2_input_element)
+
+    def are_instructions_displayed(self):
+        pass
+
+    
