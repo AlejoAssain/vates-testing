@@ -1,14 +1,14 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 
-from base_page import BasePage
+from PageObjects.base_page import BasePage
 
 
 class LoginPage(BasePage):
     __url = "https://practicetestautomation.com/practice-test-login/"
     __username_field = (By.NAME, "username")
     __password_field = (By.NAME, "password")
-    __btnSubmit = (By.XPATH, "//button[@class='btn']")
+    __submit_btn = (By.XPATH, "//button[@class='btn']")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -19,4 +19,4 @@ class LoginPage(BasePage):
     def execute_login(self, username: str, password: str):
         super()._type(self.__username_field, username)
         super()._type(self.__password_field, password)
-        super()._click(self.__btnSubmit)
+        super()._click(self.__submit_btn)

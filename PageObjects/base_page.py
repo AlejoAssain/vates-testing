@@ -10,7 +10,7 @@ class BasePage:
         self._driver = driver
 
     def _find(self, locator: tuple) -> WebElement:
-        return self._driver.find_element(*locator) # el asterico es porque puede ser mas de un elemento
+        return self._driver.find_element(*locator) # * para pasar todos los elementos de la tupla
 
     def _type(self, locator: tuple, text: str, time: int = 10):
         self._wait_until_element_is_visible(locator, time)
@@ -22,6 +22,10 @@ class BasePage:
 
     def _wait_until_element_is_visible(self, locator: tuple, time: int):
         WebDriverWait(self._driver, time).until(ec.visibility_of_element_located(locator))
+
+    def _wait_until_element_is_clickable(self, locator: tuple, time: int = 10):
+        wait = WebDriverWait(self._driver, time)
+        wait.until(ec.element_to_be_clickable(locator))
 
     def _open_url(self, url: str):
         self._driver.get(url)
@@ -39,3 +43,7 @@ class BasePage:
     def _get_text(self, locator: tuple, time: int = 10) -> str:
         self._wait_until_element_is_visible(locator, time)
         return self._find(locator).text
+
+    def _clear(self, locator: tuple, time: int = 10):
+        self._wait_until_element_is_visible(locator, time)
+        self._find(locator).clear()

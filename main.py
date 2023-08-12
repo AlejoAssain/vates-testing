@@ -5,11 +5,11 @@ from selenium.webdriver.common.by import By
 
 
 # Ruta al Chromedriver descargado
-chrome_driver_path = 'C:\\dev\\chromedriver_win32\\chromedriver.exe' # En Windows | tu ruta aqui
+# chrome_driver_path = 'C:\\dev\\chromedriver_win32\\chromedriver.exe' # En Windows | tu ruta aqui
 # chrome_driver_path = '/ruta/al/chromedriver' # En macOS/Linux
 
 # Configuración del Service de Chrome
-service = ChromeService(executable_path=chrome_driver_path)
+service = ChromeService()
 
 # Configuración del controlador Chrome con el Service
 driver = webdriver.Chrome(service=service)

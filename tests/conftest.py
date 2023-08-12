@@ -2,18 +2,18 @@ import pytest
 from selenium import webdriver
 
 
-@pytest.fixture(params="chrome")
+@pytest.fixture(params=("chrome", "edge"))
 def driver(request):
     browser = request.param
-    print(f"Creating {browser} driver ")
-
     if browser == "chrome":
-        driver = webdriver.Chrome()
-        yield driver
-
-    elif browser == "Firefox":
-        driver = webdriver.Firefox()
-        yield driver
-
-    print(f"Closing {browser} driver")
-    driver.quit()
+        print("Creating chrome driver")
+        my_driver = webdriver.Chrome()
+        yield my_driver
+        print("Closing chrome driver")
+        my_driver.quit()
+    else:
+        print("Creating edge driver")
+        my_driver = webdriver.Edge()
+        yield my_driver
+        print("Closing edge driver")
+        my_driver.quit()
