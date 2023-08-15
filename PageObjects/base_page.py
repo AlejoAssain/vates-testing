@@ -1,6 +1,7 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
@@ -10,7 +11,11 @@ class BasePage:
         self._driver = driver
 
     def _find(self, locator: tuple) -> WebElement:
-        return self._driver.find_element(*locator) # * para pasar todos los elementos de la tupla
+        return self._driver.find_element(*locator)
+
+    def _select(self, locator: tuple, text: str):
+        dropdown = Select(self._find(locator))
+        dropdown.select_by_visible_text(text)
 
     def _type(self, locator: tuple, text: str, time: int = 10):
         self._wait_until_element_is_visible(locator, time)
